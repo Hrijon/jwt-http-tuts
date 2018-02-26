@@ -1,0 +1,5 @@
+var insertnewuser = (data) => {
+//code to connect to database
+}
+
+module.exports.insertuser = insertuser;
