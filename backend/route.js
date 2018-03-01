@@ -1,6 +1,6 @@
 var app = require("jwt-http");
 var querystring = require("querystring");
-var con = require("./model/con");
+var con = require("./model/conn");
 
 var specific = (req, res, previous) => {
     previous.specific = "Specific Middle were"
