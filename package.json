@@ -9,7 +9,7 @@
   "author": "Tech City",
   "license": "ISC",
   "dependencies": {
-    "jwt-http": "^1.0.10"
+    "jwt-http": "^1.0.12"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.0"
