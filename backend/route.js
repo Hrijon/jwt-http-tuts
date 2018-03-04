@@ -31,6 +31,8 @@ app.postMethod("/backend/newuser", false, function(req, res, previous){
     console.log(data);
 });
 
+
+
 // route in case of 500 error
 
 app.getMethod("/backend/getname" + app.queryExpression(), false, function(req, res, previous){

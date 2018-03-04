@@ -7,3 +7,4 @@ app.renderHTML("/newuser", __dirname + "/html/user.html");
 
 // 404
 app.setHTML404(__dirname + "/html/404.html");
+
