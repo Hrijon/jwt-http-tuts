@@ -50,6 +50,32 @@ try {
 
 });
 
+// login
+var loginMiddleware = (req, res, previous)=>{
+    var data = querystring.parse(req.body);
+    var user = data.user;
+    var password = data.password;
+    // connct to data base process the user and password
+    if (user == password){
+        return true;
+    }else{
+        app.httpMsgs.setCookie(req, res,"JWTtoken=''", "Yor are loged out", false);
+        return false;
+    }
+
+}
+
+app.setLoginRoute(loginMiddleware, "topsecret", 1);
+app.logout();
+
+// secured route
+app.getMethod("/secured" , true, app.validate_login, function(req, res, previous){
+    app.httpMsgs.sendJSON(req, res, {
+        jwt : JSON.parse(req.jwt)
+    })
+
+});
+
 
 
 

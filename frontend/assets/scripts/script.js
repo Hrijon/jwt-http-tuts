@@ -14,5 +14,27 @@ $(document).ready(function(){
 
     });
 
+    $("#login").on("click", function(){
+        var user = $("#user").val();
+        var password = $("#password").val();
+
+        $.ajax({
+
+            url : "/login",
+            method  : "post",
+            data    : {
+                user    : user,
+                password    : password
+            },
+            success  : function(data){
+                console.log(data);
+            },
+            error   : function(err){
+                alert(err.responseJSON.data);
+            }
+            
+        })
+    });
+
 
 });
