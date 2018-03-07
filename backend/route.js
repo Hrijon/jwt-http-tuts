@@ -36,45 +36,46 @@ app.postMethod("/backend/newuser", false, function(req, res, previous){
 // route in case of 500 error
 
 app.getMethod("/backend/getname" + app.queryExpression(), false, function(req, res, previous){
-try {
-    var curQueryString = app.getParsedQuery();
-    var name = curQueryString.name;
-    var channel = test.getname(name);
-    app.httpMsgs.sendJSON(req, res, {
-        channel : channel
-    });
-} catch (error) {
-    app.httpMsgs.send500(req, res, error);
-    
-}
+    try {
+        var curQueryString = app.getParsedQuery();
+        var name = curQueryString.name;
+        var channel = test.getname(name);
+        app.httpMsgs.sendJSON(req, res, {
+            channel : channel
+        });
+    } catch (error) {
+        app.httpMsgs.send500(req, res, error);
+        
+    }
 
 });
 
 // login
-var loginMiddleware = (req, res, previous)=>{
+var loginMiddleware = (req, res, previous) => {
     var data = querystring.parse(req.body);
     var user = data.user;
     var password = data.password;
-    // connct to data base process the user and password
-    if (user == password){
+    // connect database process the user and password
+    if(user == password){
         return true;
     }else{
-        app.httpMsgs.setCookie(req, res,"JWTtoken=''", "Yor are loged out", false);
         return false;
     }
 
 }
 
-app.setLoginRoute(loginMiddleware, "topsecret", 1);
-app.logout();
+app.setLoginRoute(loginMiddleware, "TopSecret", 1);
 
-// secured route
-app.getMethod("/secured" , true, app.validate_login, function(req, res, previous){
+app.setlogout();//getmethod with /logout
+
+// secured routes
+app.getMethod("/secured", false, app.validate_login, function (req, res, previous){
     app.httpMsgs.sendJSON(req, res, {
-        jwt : JSON.parse(req.jwt)
-    })
+        user    :JSON.parse(req.jwt)
+    });
 
 });
+
 
 
 
