@@ -2,6 +2,11 @@ var app = require("jwt-http");
 var querystring = require("querystring");
 var con = require("./model/conn");
 var test = require("./model/test");
+var path = require("path");
+var fs = require("fs");
+var multer = require("multer");
+var util = require("util");
+
 
 
 var specific = (req, res, previous) => {
@@ -12,7 +17,7 @@ var specific = (req, res, previous) => {
 
 var second = (req, res, previous) => {
     
-    return false;
+    return previous;
 }
 
 app.getMethod("/backend/emp", true, specific, second,function(req, res, previous){
@@ -27,7 +32,7 @@ app.getMethod("/backend/emp", true, specific, second,function(req, res, previous
 
 app.postMethod("/backend/newuser", false, function(req, res, previous){
     var data = querystring.parse(req.body);
-    con.insertuser(data);
+    // con.insertuser(data);
     console.log(data);
 });
 
@@ -68,13 +73,60 @@ app.setLoginRoute(loginMiddleware, "TopSecret", 1);
 
 app.setlogout();//getmethod with /logout
 
+
+
+
 // secured routes
 app.getMethod("/secured", false, app.validate_login, function (req, res, previous){
+    
+    var user = JSON.parse(req.jwt).user;
+     console.log(user);
+     
+     console.log(app.roleRoutesecure("admin","/secure", "GET"));
+
     app.httpMsgs.sendJSON(req, res, {
         user    :JSON.parse(req.jwt)
     });
 
 });
+
+app.putMethod("/put", true, function(req, res, previous){
+    var data = querystring.parse(req.body);
+    console.log(data);
+    app.httpMsgs.sendJSON(req, res, {
+        done : "done"
+    });
+})
+
+app.deleteMethod ("/delete/:id", true, function(req, res, previous){
+    var data = querystring.parse(req.body);
+    console.log(req.param);
+    app.httpMsgs.sendJSON(req, res, {
+        done : "done"
+    });
+});
+
+app.deleteMethod ("/delete/name/:name", true, function(req, res, previous){
+    var data = querystring.parse(req.body);
+    console.log(req.param);
+    app.httpMsgs.sendJSON(req, res, {
+        done : "not done"
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

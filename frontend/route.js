@@ -12,3 +12,5 @@ app.setHTML404(__dirname + "/html/404.html");
 
 // login
 app.renderHTML("/login", __dirname + "/html/login.html");
+
+app.renderHTML("/upload", __dirname + "/html/upload.html")
