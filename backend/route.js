@@ -82,7 +82,7 @@ app.getMethod("/secured", false, app.validate_login, function (req, res, previou
     var user = JSON.parse(req.jwt).user;
      console.log(user);
      
-     console.log(app.roleRoutesecure("admin","/secure", "GET"));
+     console.log(app.roleRoutesecure("admin","/secured", "GET"));
 
     app.httpMsgs.sendJSON(req, res, {
         user    :JSON.parse(req.jwt)
