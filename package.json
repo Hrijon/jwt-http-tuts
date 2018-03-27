@@ -9,8 +9,7 @@
   "author": "Tech City",
   "license": "ISC",
   "dependencies": {
-    "formidable": "^1.2.1",
-    "multer": "^1.3.0"
+    "jwt-http": "^1.0.20"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.0"

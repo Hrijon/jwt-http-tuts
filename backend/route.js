@@ -4,7 +4,6 @@ var con = require("./model/conn");
 var test = require("./model/test");
 var path = require("path");
 var fs = require("fs");
-var multer = require("multer");
 var util = require("util");
 
 
@@ -78,60 +77,11 @@ app.setlogout();//getmethod with /logout
 
 // secured routes
 app.getMethod("/secured", false, app.validate_login, function (req, res, previous){
-    
-    var user = JSON.parse(req.jwt).user;
-     console.log(user);
-     
-     console.log(app.roleRoutesecure("admin","/secured", "GET"));
-
-    app.httpMsgs.sendJSON(req, res, {
+        app.httpMsgs.sendJSON(req, res, {
         user    :JSON.parse(req.jwt)
     });
 
 });
-
-app.putMethod("/put", true, function(req, res, previous){
-    var data = querystring.parse(req.body);
-    console.log(data);
-    app.httpMsgs.sendJSON(req, res, {
-        done : "done"
-    });
-})
-
-app.deleteMethod ("/delete/:id", true, function(req, res, previous){
-    var data = querystring.parse(req.body);
-    console.log(req.param);
-    app.httpMsgs.sendJSON(req, res, {
-        done : "done"
-    });
-});
-
-app.deleteMethod ("/delete/name/:name", true, function(req, res, previous){
-    var data = querystring.parse(req.body);
-    console.log(req.param);
-    app.httpMsgs.sendJSON(req, res, {
-        done : "not done"
-    });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
