@@ -1,0 +1,24 @@
+{
+  "name": "jwt-http-tuts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adbilagi/jwt-http-tuts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adbilagi/jwt-http-tuts/issues"
+  },
+  "homepage": "https://github.com/adbilagi/jwt-http-tuts#readme",
+  "dependencies": {
+    "formidable": "^1.2.1",
+    "jwt-http": "^1.0.20"
+  }
+}
